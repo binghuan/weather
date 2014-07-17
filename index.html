@@ -1,71 +1,91 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
+    <title>Weather</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Weather by binghuan</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="SHORTCUT ICON" href="icon/weather.ico" >
+    <link rel="shortcut icon" sizes="128x128" href="icon/weather-128.png">
+    <link rel="shortcut icon" sizes="196x196" href="icon/weather-196.png">
+    <link rel="apple-touch-icon" href="icon/weather-64.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icon/weather-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icon/weather-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icon/weather-152.png">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Weather</h1>
-        <p>A web app to show current weather info</p>
+    <script src="components/platform/platform.js"></script>
+    <link rel="import" href="components/font-roboto/roboto.html">
+    <link rel="import" href="components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="post-card.html">
+  <style>
+  html,body {
+    height: 100%;
+    margin: 0;
+    background-color: #E5E5E5;
+    font-family: 'RobotoDraft', sans-serif;
+  }
+  core-header-panel {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  core-toolbar {
+    background: #03a9f4;
+    color: white;
+  }
+  #tabs {
+    width: 100%;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .container {
+    width: 80%;
+    margin: 50px auto;
+  }
+  @media (min-width: 481px) {
+    #tabs {
+      width: 200px;
+    }
+    .container {
+      width: 400px;
+    }
+  }
+  </style>
 
-        <p class="view"><a href="https://github.com/binghuan/weather">View the Project on GitHub <small>binghuan/weather</small></a></p>
+    <script src="components/jquery/dist/jquery.min.js"></script>
+    <script src="main.js"></script>
 
+</head>
+<body unresolved touch-action="auto">
+    <core-header-panel>
+        <core-toolbar>
+            <h3>Show Me The Weather</h3>
+        </core-toolbar>
+        <div class="container" layout vertical center>
+            <p>For your current location</p>
+            <post-card>
+                <img id="iconForCurrent" src="icon/weather.png">
+                <h2 id="degreeForCurrent">--°C/--°F</h2>
+                <p id="descriptionForCurrent">... Getting Weather Info.</p>
+                <p id="lastUpdate" style="font-size: 12px;"></p>
+            </post-card>
+      </div>
 
-        <ul>
-          <li><a href="https://github.com/binghuan/weather/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/binghuan/weather/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/binghuan/weather">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/binghuan">binghuan</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      <footer style="position:fixed; bottom: 0;width: 100%;">
+          <p>&copy; Studio Bing-Huan 2014</p>
       </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+
+
+    </core-header-panel>
+</body>
+
 </html>
