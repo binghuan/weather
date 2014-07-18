@@ -24,7 +24,7 @@ function getCurrentLocation() {
 
 function getWeatherInfo(lat , lng) {
 	if(DBG)console.log("getGeoInfo(" + lat + "," + lng);
-    var requesturl = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=" + lat + "," + lng +
+    var requesturl = location.protocol + "//api.worldweatheronline.com/free/v1/weather.ashx?q=" + lat + "," + lng +
             "&format=json&num_of_days=5&key=xkq544hkar4m69qujdgujn7w";
     $.get(requesturl, function(event) {
 			console.log("getDataBack: ", event.data);
