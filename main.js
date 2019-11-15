@@ -3,7 +3,7 @@ var DBG = true;
 
 function error(msg) {
     console.log(msg);
-    chrome.browserAction.setBadgeText({ text: "?" });
+    //chrome.browserAction.setBadgeText({ text: "?" });
     errorCode = "unable_to_locate_your_position";
 }
 
